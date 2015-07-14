@@ -9,6 +9,5 @@ public class ListShould {
     @Test
     public void be_empty_by_default() {
         assertThat(new PersistentList().isEmpty(), is(true));
-
     }
 }
