@@ -27,4 +27,9 @@ public class PersistentList {
     public int size() {
         return list.length;
     }
+
+    public int get(int index) {
+        return 0;
+    }
 }
+    
