@@ -12,14 +12,14 @@ public class PersistentList {
     }
 
     public PersistentList(int...values) {
-        this(0, values);
+        this(values.length, values);
     }
 
     private PersistentList(int currentPosition, int... values){
-        if(values.length == 0){
+        if(currentPosition == 0){
             value = null;
         } else {
-            value = new ListElement(values[values.length - 1], new PersistentList(Arrays.copyOfRange(values, 0, values.length - 1)).value);
+            value = new ListElement(values[currentPosition- 1], new PersistentList(currentPosition - 1, values).value);
             size = values.length;
         }
     }
