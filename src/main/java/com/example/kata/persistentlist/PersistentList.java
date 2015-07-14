@@ -2,14 +2,21 @@ package com.example.kata.persistentlist;
 
 public class PersistentList {
 
-    int[] list;
+    ListElement[] list;
 
     public PersistentList() {
 
     }
 
     public PersistentList(int...values) {
-        list = values;
+
+        list = new ListElement[values.length];
+        ListElement nextElement = null;
+
+        for (int i = values.length -1 ; i >= 0; i--) {
+            list[i] = new ListElement(values[i], nextElement);
+            nextElement = list[i];
+        }
     }
 
     public boolean isEmpty() {
@@ -21,6 +28,6 @@ public class PersistentList {
     }
 
     public int get(int index) {
-        return list[index];
+        return list[index].getValue();
     }
 }
