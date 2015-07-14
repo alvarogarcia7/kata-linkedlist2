@@ -29,7 +29,6 @@ public class PersistentList {
     }
 
     public int get(int index) {
-        return 0;
+        return list[index];
     }
 }
-    
