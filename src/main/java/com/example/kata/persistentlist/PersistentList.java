@@ -45,14 +45,14 @@ public class PersistentList {
     }
 
     public int get(int index) {
+        return get(firstElement, index);
+    }
+
+    private int get(ListElement element, int index) {
         if(index == 0){
-            return firstElement.getValue();
+            return element.getValue();
         } else {
-            ListElement current = firstElement;
-            for (int i = 0; i < index; i++) {
-                current = current.getNext();
-            }
-            return current.getValue();
+            return get(element.getNext(), index - 1);
         }
     }
 }
