@@ -8,6 +8,10 @@ public class PersistentList {
 
     }
 
+    public PersistentList(int a, int b) {
+        
+    }
+
     public boolean isEmpty() {
         return true;
     }
