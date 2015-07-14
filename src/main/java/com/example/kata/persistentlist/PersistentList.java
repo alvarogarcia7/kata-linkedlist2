@@ -12,6 +12,10 @@ public class PersistentList {
     }
 
     public PersistentList(int...values) {
+        this(0, values);
+    }
+
+    private PersistentList(int currentPosition, int... values){
         if(values.length == 0){
             value = null;
         } else {
