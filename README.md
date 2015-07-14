@@ -2,6 +2,8 @@
 
 MM and I have practiced the linkedlist kata.
 
+Note: the name [kata-linkedlist](https://github.com/alvarogarcia7/kata-linkedlist) was already occupied by another execution of the kata.
+
 Inspiration from [codekata](http://codekata.com/kata/kata21-simple-lists/)
 
 [Slides][slides] if you want to facilitate it
