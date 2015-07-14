@@ -1,10 +1,9 @@
 package com.example.kata.persistentlist;
 
-import java.util.Arrays;
-
 public class PersistentList {
 
-    ListElement value;
+    ListElement lastElement;
+    ListElement firstElement;
     private int size;
 
     public PersistentList() {
@@ -12,15 +11,28 @@ public class PersistentList {
     }
 
     public PersistentList(int...values) {
-        this(values.length, values);
+        this(values.length - 1, null, values);
+        size = values.length;
     }
 
-    private PersistentList(int currentPosition, int... values){
-        if(currentPosition == 0){
-            value = null;
+    private PersistentList(int currentPosition, ListElement nextValue, int... values){
+
+        lastElement = new ListElement(values[currentPosition], nextValue);
+        final int i = currentPosition - 1;
+
+        if (i >= 0) {
+            createRecursively(i, lastElement, values);
         } else {
-            value = new ListElement(values[currentPosition- 1], new PersistentList(currentPosition - 1, values).value);
-            size = values.length;
+            firstElement = lastElement;
+        }
+    }
+
+    private void createRecursively(int i, ListElement nextElement, int[] values) {
+        if (i == 0) {
+            firstElement = new ListElement(values[i], nextElement);
+        } else {
+            ListElement middleElement = new ListElement(values[i], nextElement);
+            createRecursively(i - 1, middleElement, values);
         }
     }
 
@@ -34,9 +46,9 @@ public class PersistentList {
 
     public int get(int index) {
         if(index == 0){
-            return value.getValue();
+            return firstElement.getValue();
         } else {
-            ListElement current = value;
+            ListElement current = firstElement;
             for (int i = 0; i < index; i++) {
                 current = current.getNext();
             }
