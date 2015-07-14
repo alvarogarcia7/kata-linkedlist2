@@ -15,7 +15,7 @@ public class PersistentList {
         if(values.length == 0){
             value = null;
         } else {
-            value = new ListElement(values[0], new PersistentList(Arrays.copyOfRange(values, 1, values.length)).value);
+            value = new ListElement(values[values.length - 1], new PersistentList(Arrays.copyOfRange(values, 0, values.length - 1)).value);
             size = values.length;
         }
     }
