@@ -1,21 +1,22 @@
 package com.example.kata.persistentlist;
 
+import java.util.Arrays;
+
 public class PersistentList {
 
-    ListElement[] list;
+    ListElement value;
+    private int size;
 
     public PersistentList() {
 
     }
 
     public PersistentList(int...values) {
-
-        list = new ListElement[values.length];
-        ListElement nextElement = null;
-
-        for (int i = values.length -1 ; i >= 0; i--) {
-            list[i] = new ListElement(values[i], nextElement);
-            nextElement = list[i];
+        if(values.length == 0){
+            value = null;
+        } else {
+            value = new ListElement(values[0], new PersistentList(Arrays.copyOfRange(values, 1, values.length)).value);
+            size = values.length;
         }
     }
 
@@ -24,10 +25,18 @@ public class PersistentList {
     }
 
     public int size() {
-        return list.length;
+        return size;
     }
 
     public int get(int index) {
-        return list[index].getValue();
+        if(index == 0){
+            return value.getValue();
+        } else {
+            ListElement current = value;
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+            return current.getValue();
+        }
     }
 }
